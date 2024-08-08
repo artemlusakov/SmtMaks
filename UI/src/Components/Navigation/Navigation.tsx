@@ -1,6 +1,7 @@
 import React from 'react';
 import Logo from "../Logotip/Logo";
 import s from "./Navigation.module.css"
+import {NavLink} from "react-router-dom";
 
 
 const Navigation = () => {
@@ -10,12 +11,12 @@ const Navigation = () => {
 
             <div className={s.Nav__Links}>
 
-                <a href="">Text</a>
-                <a href="">Text</a>
-                <a href="">Text</a>
-                <a href="">Text</a>
-                <a href="">Text</a>
-                <a href="">Text</a>
+                <NavLink to={'/'}>Text</NavLink>
+                <NavLink to={'/Home'}>Text</NavLink>
+                <NavLink to={'/'}>Text</NavLink>
+                <NavLink to={'/'}>Text</NavLink>
+                <NavLink to={'/'}>Text</NavLink>
+                <NavLink to={'/'}>Text</NavLink>
             </div>
 
             <div className={s.Nav__Contacts}>
