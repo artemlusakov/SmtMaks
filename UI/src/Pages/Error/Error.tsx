@@ -1,4 +1,3 @@
-import React from 'react';
 import s from './Error.module.css'
 import {NavLink} from "react-router-dom";
 

@@ -4,6 +4,7 @@ nav{
     justify-content: space-between;
 
     background: #363636;
+    border-radius: 0px 10px 10px 0px;
     width: 15vw;
     height: 100vh;
 }
