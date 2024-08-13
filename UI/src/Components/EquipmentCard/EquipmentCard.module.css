@@ -1,0 +1,17 @@
+.Equipment__card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 200px;
+    height: 250px;
+    border-radius: 5px;
+
+    background-color: #fff;
+    color: #000;
+}
+
+.Equipment__card img {
+    height: 150px;
+    width: 150px;
+}
