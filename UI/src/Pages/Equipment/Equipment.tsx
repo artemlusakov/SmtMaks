@@ -10,6 +10,14 @@ const Equipment = () => {
             <Navigation/>
 
             <div className={s.Equipment__content}>
+                <h2>Выбирете Оборудование</h2>
+                <EquipmentCard URL="/mc421" img={mc421} NameEquip='mc421'/>
+                <EquipmentCard img={mc421} NameEquip='mc421'/>
+                <EquipmentCard img={mc421} NameEquip='mc421'/>
+                <EquipmentCard img={mc421} NameEquip='mc421'/>
+                <EquipmentCard img={mc421} NameEquip='mc421'/>
+                <EquipmentCard img={mc421} NameEquip='mc421'/>
+                <EquipmentCard img={mc421} NameEquip='mc421'/>
                 <EquipmentCard img={mc421} NameEquip='mc421'/>
             </div>
         </div>

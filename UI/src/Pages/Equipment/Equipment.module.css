@@ -2,3 +2,19 @@
 
 }
 
+.Equipment__content{
+    width: 90%;
+    height: 100vh;
+   display: grid;
+   align-items: center;
+   justify-items: center;
+
+   grid-template-columns: repeat(5, 1fr);
+   grid-template-rows: 10% 30% 30% 30%;
+}
+
+
+.Equipment__content h2 {
+    display: grid;
+    grid-column: 1/6;
+}

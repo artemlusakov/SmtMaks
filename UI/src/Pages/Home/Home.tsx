@@ -8,7 +8,7 @@ const Home = () => {
             <Navigation/>
 
             <div className={s.Home__content}>
-                <h1></h1>
+                <h1>Приветсвую вас на Web ресурсе для просмотра log файлов</h1>
             </div>
         </div>
     );
