@@ -12,13 +12,13 @@ const Equipment = () => {
             <div className={s.Equipment__content}>
                 <h2>Выбирете Оборудование</h2>
                 <EquipmentCard URL="/mc421" img={mc421} NameEquip='mc421'/>
-                <EquipmentCard img={mc421} NameEquip='mc421'/>
-                <EquipmentCard img={mc421} NameEquip='mc421'/>
-                <EquipmentCard img={mc421} NameEquip='mc421'/>
-                <EquipmentCard img={mc421} NameEquip='mc421'/>
-                <EquipmentCard img={mc421} NameEquip='mc421'/>
-                <EquipmentCard img={mc421} NameEquip='mc421'/>
-                <EquipmentCard img={mc421} NameEquip='mc421'/>
+                <EquipmentCard img={mc421} NameEquip='mc422'/>
+                <EquipmentCard img={mc421} NameEquip='mc423'/>
+                <EquipmentCard img={mc421} NameEquip='mc424'/>
+                <EquipmentCard img={mc421} NameEquip='mc425'/>
+                <EquipmentCard img={mc421} NameEquip='mc426'/>
+                <EquipmentCard img={mc421} NameEquip='mc427'/>
+                <EquipmentCard img={mc421} NameEquip='mc428'/>
             </div>
         </div>
     );

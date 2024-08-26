@@ -13,6 +13,10 @@
    grid-template-rows: 10% 30% 30% 30%;
 }
 
+.Equipment__card{
+    width: 90%;
+}
+
 
 .Equipment__content h2 {
     display: grid;
