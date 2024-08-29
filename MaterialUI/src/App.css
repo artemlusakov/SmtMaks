@@ -1,0 +1,10 @@
+.AppBar {
+   
+    height: 50px;
+}
+
+.App__Container{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
