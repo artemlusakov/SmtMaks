@@ -1,16 +1,17 @@
 const fs = require('fs');
 const path = require('path');
 
-// Function to parse log line
+// Функция для парсинга строки лога
 function parseLogLine(line) {
+
   const regex = /(\d{2}\/\d{2}\/\d{2}) (\d{2}:\d{2}:\d{2}) (.*)/;
   const match = line.match(regex);
   if (!match) return null;
 
   const [, date, time, message] = match;
-  const datetime = `${date}T${time}`;
+  const datetime = `${date} ${time}`;
 
-  // Parse message content
+  // Парсинг содержимого сообщения
   let parsedMessage;
   if (message.includes("Failed to pick up a part properly")) {
     const partRegex = /Part (.*)/;
@@ -52,18 +53,18 @@ function parseLogLine(line) {
   };
 }
 
-// Read log file
-const logFilePath = path.join(__dirname, 'Operate.log');
+// Чтение файла лога
+const logFilePath = path.join('C:', 'Users', 'artem', 'OneDrive', 'Рабочий стол', 'SmartCM 421', 'SmartSM', 'Log', 'Operate.log');
 fs.readFile(logFilePath, 'utf8', (err, data) => {
   if (err) throw err;
 
   const lines = data.split('\n').filter(line => line.trim() !== '');
   const parsedLogs = lines.map(parseLogLine).filter(log => log !== null);
 
-  // Write JSON to file
-  const jsonFilePath = path.join(__dirname, 'Operate.json');
+  // Запись JSON в файл
+  const jsonFilePath = path.join('D:', 'SmtMaks', 'MaterialUI', 'public', 'Operate.json');
   fs.writeFile(jsonFilePath, JSON.stringify(parsedLogs, null, 2), 'utf8', err => {
     if (err) throw err;
-    console.log('JSON file generated successfully.');
+    console.log('JSON файл сгенерирован успешно.');
   });
 });

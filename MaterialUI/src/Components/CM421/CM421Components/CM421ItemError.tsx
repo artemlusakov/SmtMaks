@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import s from "./CM421ItemError.module.css";
+import s from "./CM421Item.module.css";
 
 interface LogEntry {
   timestamp: string;
@@ -30,7 +30,7 @@ export default function CM421ItemError() {
   return (
     <div className={s.ItemError__Content}>
       <h3>Количество записей с уровнем WARNING:</h3>
-      <div className={s.EquipMC421__Warning__item_sercal}>
+      <div className={s.ItemError__Content_num}>
         {warningCount}
       </div>
     </div>
