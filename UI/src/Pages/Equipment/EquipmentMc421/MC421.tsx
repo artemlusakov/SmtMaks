@@ -69,6 +69,7 @@ const EquipMC421 = () => {
                       <select value={sellectPowerPosition} onChange={PowerSelectChange}>
                         <option value="F35">F35</option>
                         <option value="F44">F44</option>
+                        <option value="F46">F46</option>
                       </select>
                     </div>  
                   </div>
