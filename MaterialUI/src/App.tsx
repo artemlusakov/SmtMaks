@@ -1,7 +1,9 @@
 import './App.css'
-import TemporaryDrawer from './Components/Navigate/Navigate.jsx'
-import {AppBar, Container} from "@mui/material";
-import  MC421_Statistics  from "./Components/CM421/CM421_Statistics.jsx";
+import TemporaryDrawer from './Components/Navigate/Navigate.tsx'
+import { Container} from "@mui/material";
+import  MC421_Statistics  from "./Components/CM421/CM421_Statistics.tsx";
+
+import Clock from './Components/Clock/Clock.tsx'
 
 function App() {
   const handleFileUpload = async (file) => {
@@ -13,6 +15,7 @@ function App() {
     <>
           <Container fixed className='App__Container'>
             <TemporaryDrawer/>
+            <Clock/>
           </Container>
   
           <MC421_Statistics/>

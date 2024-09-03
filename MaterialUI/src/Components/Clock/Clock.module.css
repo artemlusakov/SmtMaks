@@ -1,0 +1,5 @@
+.clock{
+    font-size: clamp(15px, calc(20px - 5% * (100vw / 1920)), 20px);
+    color: blue;
+    font-weight: bolder;
+}

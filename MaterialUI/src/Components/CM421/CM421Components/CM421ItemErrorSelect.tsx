@@ -45,7 +45,7 @@ export default function CM421ItemErrorSelect() {
       <div className={s.ItemError__Content_num}>
         {filteredCount}
       </div>
-      <div>
+      <div className={s.ItemError__Content_settings}>
         <select value={selectedHead} onChange={handleSelectChange}>
           <option value="Head1">Head1</option>
           <option value="Head2">Head2</option>
@@ -57,6 +57,7 @@ export default function CM421ItemErrorSelect() {
 
         <input 
       type="text"
+      placeholder='Введите Fider'
       value={selectPowerPosition}
       onChange={powerPositionChange}
        pattern="^[A-Z0-9\s]+$"

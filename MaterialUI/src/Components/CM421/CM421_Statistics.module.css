@@ -31,7 +31,8 @@
 .MC421__LeftBox_Content{
     display: flex;
     justify-content: space-around;
-    
+
+    height: 95%;
 }
 
 .MC421__LeftBox_Content__Statistic{
@@ -39,12 +40,16 @@
     justify-content: space-between;
 
     width: 60%;
+    height: 100%;
 }
 
 
 .Blob{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 30%;
-    height: 250px;
+    height: 100%;
     border-radius: 10px;
     background-color: rgb(240, 240, 240);
     border: 2px solid #212121;

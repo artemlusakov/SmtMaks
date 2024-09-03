@@ -4,7 +4,7 @@ import FileDropZone from '../Blob/FileDropZone'
 import CM421ItemError from './CM421Components/CM421ItemError'
 import CM421ItemErrorSelect from './CM421Components/CM421ItemErrorSelect'
 
-import CM421itemOperate from './CM421Components/CM421itemOperate'
+import CM421ItemOperate from './CM421Components/CM421itemOperate'
 
 
 export default function MC421_Statistics() {
@@ -35,7 +35,7 @@ export default function MC421_Statistics() {
 
         <div className={s.MC421__Box__Error}>
           <h3>Статистика с Operate.log</h3> 
-                 <CM421itemOperate/>
+                 <CM421ItemOperate/>
         </div>
       </div>
 
