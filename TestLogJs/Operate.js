@@ -9,7 +9,7 @@ function parseLogLine(line) {
   if (!match) return null;
 
   const [, date, time, message] = match;
-  const datetime = `${date} ${time}`;
+  const datetime = `${date}T${time}`;
 
   // Парсинг содержимого сообщения
   let parsedMessage;

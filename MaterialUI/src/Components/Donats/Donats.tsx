@@ -1,3 +1,4 @@
+import React from 'react';
 import Chart from 'react-apexcharts';
 
 interface DonutChartProps {
@@ -5,16 +6,16 @@ interface DonutChartProps {
   targetCount: number;
 }
 
-export default function DonutChart({ completedTasks, targetCount }: DonutChartProps) {
+export default function DonutChart({ completedTasks, targetCount }: DonutChartProps): JSX.Element {
   const chartOptions = {
-    labels: ['Выполненные задачи', 'Остальные задачи'],
+    labels: ['Сделанно деталей', 'Осталось сделать деталей'],
     colors: ['#34C759', '#FF0000'],
     plotOptions: {
-        pie: {
-            donut: {
-              size: '50%' // регулировка размера отверстия. Указывайте в % от 100% до 0 
-            }
-          },
+      pie: {
+        donut: {
+          size: '50%'
+        }
+      },
       pieChart: {
         customScale: 1.1
       }
@@ -32,7 +33,20 @@ export default function DonutChart({ completedTasks, targetCount }: DonutChartPr
           position: 'bottom'
         }
       }
-    }]
+    }],
+    chart: {
+      events: {
+        dataPointMouseEnter: function(event: any): void {
+          event.target.style.cursor = "pointer";
+        },
+        dataPointMouseLeave: function(event: any): void {
+          event.target.style.cursor = "default";
+        }
+      },
+      toolbar: {
+        show: false
+      }
+    }
   };
 
   const chartSeries = [
@@ -49,4 +63,3 @@ export default function DonutChart({ completedTasks, targetCount }: DonutChartPr
     />
   );
 }
-
