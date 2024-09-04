@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
+import s from './CM421Item.module.css'
+import DonutChart from '../../Donats/Donats'
 
 interface WorkRecord {
   start: string;
@@ -61,35 +63,6 @@ export default function CM421ItemOperate() {
     return targetCount ? parseInt(targetCount, 10) : pcbCount;
   };
 
-  const chartOptions = {
-    labels: ['Выполненные задачи', 'Остальные задачи'],
-    colors: ['#34C759', '#FF0000'],
-    plotOptions: {
-      pieChart: {
-        customScale: 1.1
-      }
-    },
-    legend: {
-      show: false
-    },
-    responsive: [{
-      breakpoint: 480,
-      options: {
-        chart: {
-          width: 200
-        },
-        legend: {
-          position: 'bottom'
-        }
-      }
-    }]
-  };
-
-  const chartSeries = [
-    completedTasks,
-    Math.max(0, getTargetValue() - completedTasks)
-  ];
-
   return (
     <div>
       <h3>{START_DATE} {start}</h3>
@@ -106,15 +79,12 @@ export default function CM421ItemOperate() {
         placeholder={TARGET_COUNT_PLACEHOLDER}
       />
 
-      <h3>Процент выполненных задач:</h3>
-      <Chart
-        options={chartOptions}
-        series={chartSeries}
-        type="donut"
-        height={350}
-      />
-      
-      <p>Процент выполнения: {(completedTasks / getTargetValue()) * 100}%</p>
+      <div className={s.ItemError__Content}>
+        <h3>Процент выполненных задач:</h3>
+        <DonutChart completedTasks={completedTasks} targetCount={getTargetValue()} />
+        
+        <p>Процент выполнения: {(completedTasks / getTargetValue()) * 100}%</p>
+      </div>
     </div>
   );
 }
