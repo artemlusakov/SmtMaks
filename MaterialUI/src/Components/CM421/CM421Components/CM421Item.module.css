@@ -1,29 +1,28 @@
-.ItemError__Content{
+.ItemBox{
         display: flex;
         align-items: center;
         justify-content: space-around;
         flex-direction: column;
 
-
-        height: 300px;
-        width: 220px;
         border-radius: 10px;
         padding: 10px;
+
+        width: 350px;
 
         text-align: center;
     
         background-color: rgb(223, 223, 223);
 }
 
-.ItemError__Content h3{
+.ItemBox h3{
         font-size: clamp(0.625rem, 0.179rem + 1.43vw, 1.25rem);
 }
 
-.ItemError__Content input{
-        text-transform:uppercase;
+.ItemBox input{
+
         width: 70%;
 }
-.ItemError__Content input::placeholder{
+.ItemBox input::placeholder{
         font-size:clamp(0.313rem, -0.035rem + 1.11vw, 0.938rem);  
 }
 

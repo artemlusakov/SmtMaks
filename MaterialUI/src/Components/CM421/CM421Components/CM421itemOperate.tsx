@@ -69,7 +69,7 @@ export default function CM421ItemOperate() {
 
   return (
     <div>
-      <div className={s.ItemError__Content}>
+      <div className={s.ItemBox}>
         <h3>Процент выполненных задач:</h3>
         
         {/* Компонент диаграммы с переданными пропсами */}

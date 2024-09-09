@@ -11,19 +11,19 @@ interface Props {
     filteredCount: number;
 }
 
-const DonatsWarning: React.FC<Props> = ({ warningCount, filteredCount }) => {
+const DonatsWarning: React.FC<Props> = ({ warningCount, filteredCount, labels }) => {
     const chartOptions: any = {
         chart: {
             type: 'donut',
             width: 350,
             height: 300,
         },
-        labels: ['Total Warnings', 'Filtered Warnings'],
+        labels: labels,
         colors: ['#34C759', '#FF0000'],
         plotOptions: {
             pie: {
                 donut: {
-                    size: '60%',
+                    size: '45%',
                 }
             }
         },
@@ -66,8 +66,8 @@ const DonatsWarning: React.FC<Props> = ({ warningCount, filteredCount }) => {
                 options={chartOptions}
                 series={chartSeries}
                 type="donut"
-                width={350}
-                height={300}
+                width={300}
+                height={250}
             />
         </div>
     );
