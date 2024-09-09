@@ -1,65 +1,72 @@
 import React from 'react';
 import Chart from 'react-apexcharts';
 
-interface DonutChartProps {
-  completedTasks: number;
-  targetCount: number;
+// Определение интерфейса пропсов компонента
+interface DonutsDetailsProps {
+  completedTasks: number; // Количество выполненных задач
+  targetCount: number; // Целевой счетчик задач
 }
 
-export default function DonutChart({ completedTasks, targetCount }: DonutChartProps): JSX.Element {
+/**
+ * Компонент для отображения графика с информацией о выполненных и не выполненных задачах
+ */
+export default function DonutsDetails({ completedTasks, targetCount }: DonutsDetailsProps): JSX.Element {
+  // Определение опций графика
   const chartOptions = {
-    labels: ['Сделанно деталей', 'Осталось сделать деталей'],
-    colors: ['#34C759', '#FF0000'],
+    labels: ['Сделано деталей', 'Осталось сделать деталей'], // Подписи для секторов графика
+    colors: ['#34C759', '#FF0000'], // Цвета для секторов: зеленый для выполненных, красный для не выполненных
     plotOptions: {
-      pie: {
-        donut: {
-          size: '50%'
+      pie: { // Общие настройки для кругового графика
+        donut: { // Настройки для графика пончика
+          size: '45%' // Размер графика пончика в 45% от ширины контейнера
         }
       },
-      pieChart: {
-        customScale: 1.1
+      pieChart: { // Дополнительные настройки для кругового графика
+        customScale: 1.1 // Увеличивает масштаб графика на 10%
       }
     },
-    legend: {
-      show: false
+    legend: { // Настройки легенды
+      show: false // Скрывает легенду
     },
-    responsive: [{
+    responsive: [{ // Настройки для адаптивности при изменении размера экрана
       breakpoint: 480,
       options: {
-        chart: {
-          width: 200
+        chart: { // Настройки для маленьких экранов
+          width: 200 // Уменьшает ширину графика до 200 пикселей
         },
-        legend: {
-          position: 'bottom'
+        legend: { // Настройки легенды для маленьких экранов
+          position: 'bottom' // Перемещает легенду вниз
         }
       }
     }],
-    chart: {
-      events: {
-        dataPointMouseEnter: function(event: any): void {
+    chart: { // Общие настройки для графика
+      events: { // Обработчики событий для элементов графика
+        dataPointMouseEnter: function(event: any): void { // Изменяет курсор при наведении на точку данных
           event.target.style.cursor = "pointer";
         },
-        dataPointMouseLeave: function(event: any): void {
+        dataPointMouseLeave: function(event: any): void { // Возвращается стандартный курсор при уходе от точки данных
           event.target.style.cursor = "default";
         }
       },
-      toolbar: {
-        show: false
+      toolbar: { // Настройки инструментной панели
+        show: false // Скрывает инструментную панель
       }
     }
   };
 
+  // Определение данных для серии графика
   const chartSeries = [
-    completedTasks,
-    Math.max(0, targetCount - completedTasks)
+    completedTasks, // Количество выполненных задач
+    Math.max(0, targetCount - completedTasks) // Максимальное из нуля и разница между целевым количеством и выполненными задачами
   ];
 
   return (
+    // Компонент Chart от react-apexcharts
     <Chart
-      options={chartOptions}
-      series={chartSeries}
-      type="donut"
-      height={250}
+      options={chartOptions} // Передаем объект с опциями графика
+      series={chartSeries} // Передаем массив с данными для графика
+      type="donut" // Тип графика - донут
+      height={250} // Высота графика в 250 пикселей
     />
   );
 }

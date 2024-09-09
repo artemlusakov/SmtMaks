@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 import s from './CM421Item.module.css'
-import DonutChart from '../../Donats/Donats'
+import DonutsDetails from '../../Donats/Donats'
 
 // Интерфейс для описания структуры записи о работе
 interface WorkRecord {
@@ -73,7 +73,8 @@ export default function CM421ItemOperate() {
         <h3>Процент выполненных задач:</h3>
         
         {/* Компонент диаграммы с переданными пропсами */}
-        <DonutChart completedTasks={completedTasks} targetCount={getTargetValue()} />
+        <DonutsDetails completedTasks={completedTasks} targetCount={getTargetValue()} />
+        
 
         {/* Инпут для ввода целевого количества деталей */}
         <input
