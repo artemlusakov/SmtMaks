@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import moment from 'moment';
+import s from './CM421Item.module.css';
+import InputMask from 'react-input-mask';
 
 interface DataItem {
   datetime: string;
   message: string;
   type?: string;
   event?: string;
+  formattedDateTime: string;
 }
 
 const CM421itemOperateDate: React.FC = () => {
   const [data, setData] = useState<DataItem[]>([]);
   const [timeDifference, setTimeDifference] = useState<string | null>(null);
   const [startDateInput, setStartDateInput] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     fetchData();
@@ -24,6 +28,12 @@ const CM421itemOperateDate: React.FC = () => {
         throw new Error('Ошибка загрузки файла Operate.json');
       }
       const jsonData: DataItem[] = await response.json();
+      
+      // Форматируем дату и время для каждого элемента
+      jsonData.forEach(item => {
+        item.formattedDateTime = moment(item.datetime, 'YYYY/MM/DDTHH:mm:ss').format('DD.MM.YYYY HH:mm:ss');
+      });
+      
       setData(jsonData);
     } catch (error) {
       console.error('Произошла ошибка:', error);
@@ -35,11 +45,12 @@ const CM421itemOperateDate: React.FC = () => {
 
     let startDate: moment.Moment;
     if (startDateInput.trim()) {
-      startDate = moment(startDateInput, 'YYYY-MM-DDTHH:mm:ss', true);
-      if (!startDate.isValid()) {
-        alert('Неверный формат даты. Пожалуйста, используйте формат YYYY-MM-DDTHH:mm:ss');
+      const parsedDate = moment(startDateInput, 'YYYY/MM/DD HH:mm:ss', true);
+      if (!parsedDate.isValid()) {
+        alert('Неверный формат даты. Пожалуйста, используйте формат YYYY/MM/DD HH:mm:ss');
         return;
       }
+      startDate = parsedDate;
     } else {
       startDate = moment(data[0].datetime, 'YYYY/MM/DDTHH:mm:ss');
     }
@@ -60,7 +71,15 @@ const CM421itemOperateDate: React.FC = () => {
   }, [data]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setStartDateInput(e.target.value);
+    const value = e.target.value.replace(/[^0-9]/g, '');
+  
+    // Форматируем вводимую дату
+    if (value.length === 14) {
+      const formattedDate = `${value.slice(0, 4)}/${value.slice(4, 6)}/${value.slice(6, 8)} ${value.slice(8, 10)}:${value.slice(10, 12)}:${value.slice(12, 14)}`;
+      setStartDateInput(formattedDate);
+    } else {
+      setStartDateInput(value);
+    }
   };
 
   const handleSubmit = (e: React.FormEvent): void => {
@@ -73,20 +92,24 @@ const CM421itemOperateDate: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className={s.OperateDate__Box}>
       <h2>CM421itemOperateDate</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="startDate">Введите начальную дату (YYYY-MM-DDTHH:mm:ss):</label>
-        <input
+        <label htmlFor="startDate">
+          Введите начальную дату (формат: YYYY/MM/DD HH:mm:ss):
+        </label>
+        <InputMask
+          mask="9999/99/99 99:99:99"
+          maskChar="_"
           id="startDate"
           type="text"
-          value={startDateInput}
-          onChange={handleInputChange}
+          placeholder="YYYY/MM/DD HH:mm:ss"
+          onChange={(e) => handleInputChange(e)}
         />
         <button type="submit">Рассчитать</button>
       </form>
-      <p>Первое время: {moment(data[0].datetime, 'YYYY/MM/DDTHH:mm:ss').format('DD.MM.YYYY HH:mm:ss')}</p>
-      <p>Последнее время: {moment(data[data.length - 1].datetime, 'YYYY/MM/DDTHH:mm:ss').format('DD.MM.YYYY HH:mm:ss')}</p>
+      <p>Первое время: {data[0].formattedDateTime}</p>
+      <p>Последнее время: {data[data.length - 1].formattedDateTime}</p>
       <p>Разница во времени: {timeDifference}</p>
     </div>
   );

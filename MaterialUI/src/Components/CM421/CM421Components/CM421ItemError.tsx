@@ -56,13 +56,8 @@ export default function CM421ItemError() {
     return (
         <div className={s.ItemBox}>
             <h2>График соотношения WARNING</h2>
-            <DonatsWarning warningCount={warningCount} filteredCount={filteredCount} labels ={[ 'Всего Warnings', `Ошибки с ${selectedHead} + ${selectFider}` ]}/>
-            <p>Общее количество WARNING: {warningCount}</p>
-            <p>
-                Количество WARNING с HEAD = {selectedHead} + Fider = {selectFider}: 
-                {filteredCount} ({calculatePercentage()} от общего количества)
-            </p>
-
+            <DonatsWarning warningCount={warningCount} filteredCount={filteredCount} labels ={[ 'Всего Warnings', `Ошибки с ${selectedHead}  ${selectFider}` ]}/>
+            
             <div>
                 <select value={selectedHead} onChange={handleSelectChange}>
                     <option value="Head1">Head1</option>
@@ -81,6 +76,12 @@ export default function CM421ItemError() {
                     pattern="^[A-Z0-9\s]+$"
                 />
             </div>
+            
+            <p>Общее количество WARNING: {warningCount}</p>
+            <p>
+                Количество WARNING с {selectedHead} и {selectFider ?`Fider ${selectFider}` : "Без Fider"} : 
+                {filteredCount} ({calculatePercentage()})
+            </p>
         </div>
     );
 }

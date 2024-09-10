@@ -31,7 +31,6 @@
 .MC421__LeftBox_Content{
     display: flex;
     justify-content: space-around;
-    align-items: center;
 
     min-height: 300px;
 }
@@ -56,4 +55,8 @@
 }
 .MC421__RightBox_Content img{
 
+}
+
+.MC421__RightBox_Content_Text{
+    margin-left: 10px;
 }
