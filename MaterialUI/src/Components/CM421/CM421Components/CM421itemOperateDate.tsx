@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import moment from 'moment';
 import s from './CM421Item.module.css';
-import InputMask from 'react-input-mask';
+import { InputMask } from 'primereact/inputmask';
+        
 
 interface DataItem {
   datetime: string;
@@ -15,7 +16,6 @@ const CM421itemOperateDate: React.FC = () => {
   const [data, setData] = useState<DataItem[]>([]);
   const [timeDifference, setTimeDifference] = useState<string | null>(null);
   const [startDateInput, setStartDateInput] = useState('');
-  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     fetchData();
@@ -72,7 +72,6 @@ const CM421itemOperateDate: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value.replace(/[^0-9]/g, '');
-  
     // Форматируем вводимую дату
     if (value.length === 14) {
       const formattedDate = `${value.slice(0, 4)}/${value.slice(4, 6)}/${value.slice(6, 8)} ${value.slice(8, 10)}:${value.slice(10, 12)}:${value.slice(12, 14)}`;
@@ -96,11 +95,10 @@ const CM421itemOperateDate: React.FC = () => {
       <h2>CM421itemOperateDate</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="startDate">
-          Введите начальную дату (формат: YYYY/MM/DD HH:mm:ss):
+          Введите начальную дату (формат: год/месяц/день ч:мин:сек):
         </label>
         <InputMask
-          mask="9999/99/99 99:99:99"
-          maskChar="_"
+          mask="9999/99/99 99:99:99"  
           id="startDate"
           type="text"
           placeholder="YYYY/MM/DD HH:mm:ss"

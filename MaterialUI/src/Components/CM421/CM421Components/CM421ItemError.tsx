@@ -17,10 +17,13 @@ export default function CM421ItemError() {
     const [selectedHead, setSelectedHead] = useState<string>('Head1');
     const [selectFider, setSelectFider] = useState<string>('');
 
+
     useEffect(() => {
+
         fetch('/Error.json')
             .then(response => response.json())
             .then((data: LogEntry[]) => {
+
                 if (Array.isArray(data)) {
                     const warnings = data.filter(item => item.level === 'WARNING');
                     setWarningCount(warnings.length);

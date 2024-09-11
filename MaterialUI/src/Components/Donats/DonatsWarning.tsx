@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import Chart from 'react-apexcharts';
-
-interface ChartData {
-    name: string;
-    value: number;
-}
 
 interface Props {
     warningCount: number;
     filteredCount: number;
+    labels: string[];
 }
 
 const DonatsWarning: React.FC<Props> = ({ warningCount, filteredCount, labels }) => {
-    const chartOptions: any = {
+    useEffect(() => {
+        // Этот эффект будет срабатывать при изменении warningCount или filteredCount
+        console.log('Warning count or Filtered count changed');
+    }, [warningCount, filteredCount]);
+
+    const chartOptions: any = useMemo(() => ({
         chart: {
             type: 'donut',
             width: 350,
@@ -53,12 +54,12 @@ const DonatsWarning: React.FC<Props> = ({ warningCount, filteredCount, labels })
                 fontFamily: undefined
             }
         }
-    };
+    }), [labels]);
 
-    const chartSeries = [
+    const chartSeries = useMemo(() => [
         warningCount,
-        Math.max(0,filteredCount)
-    ];
+        Math.max(0, filteredCount)
+    ], [warningCount, filteredCount]);
 
     return (
         <div>
