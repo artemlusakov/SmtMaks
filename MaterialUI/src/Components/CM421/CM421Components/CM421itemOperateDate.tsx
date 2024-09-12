@@ -16,6 +16,7 @@ const CM421itemOperateDate: React.FC = () => {
   const [data, setData] = useState<DataItem[]>([]);
   const [timeDifference, setTimeDifference] = useState<string | null>(null);
   const [startDateInput, setStartDateInput] = useState('');
+  const [endDateInput, setEndDateInput] = useState('');
 
   useEffect(() => {
     fetchData();
@@ -55,7 +56,20 @@ const CM421itemOperateDate: React.FC = () => {
       startDate = moment(data[0].datetime, 'YYYY/MM/DDTHH:mm:ss');
     }
 
-    const endDate = moment(data[data.length - 1].datetime, 'YYYY/MM/DDTHH:mm:ss');
+
+    let endDate: moment.Moment;
+    if (endDateInput.trim()) {
+      const parsedDate = moment(endDateInput, 'YYYY/MM/DD HH:mm:ss', true);
+      if (!parsedDate.isValid()) {
+        alert('Неверный формат даты. Пожалуйста, используйте формат YYYY/MM/DD HH:mm:ss');
+        return;
+      }
+      endDate = parsedDate;
+    } else {
+      endDate = moment(data[data.length - 1].datetime, 'YYYY/MM/DDTHH:mm:ss');
+    }
+
+
     const duration = moment.duration(endDate.diff(startDate));
     const hours = Math.floor(duration.asHours());
     const minutes = Math.floor(duration.minutes());
