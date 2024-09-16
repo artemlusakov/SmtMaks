@@ -1,0 +1,4 @@
+Condition: ASSERT( ::IsWindow(m_hWnd) ); 
+File: C:\Program Files\Microsoft Visual Studio\VC98\MFC\INCLUDE\afxwin2.inl 
+Line: 39
+

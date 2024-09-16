@@ -2,24 +2,18 @@
 setlocal enabledelayedexpansion
 
 :: Проверка наличия файлов скриптов  
-if not exist "D:\SmtMaks\TestLogJs\Error.js" (
-    echo Файл log1.js не найден в D:\SmtMaks\TestLogJs
-    pause
-    exit /b 1
-)
 
-if not exist "D:\SmtMaks\TestLogJs\Operate.js" (
-    echo Файл Operate.js не найден в D:\SmtMaks\TestLogJs
+if not exist ".\TestLogJs\log.js" (
+    echo Файл log.js не найден в .\TestLogJs
     pause
     exit /b 1
 )
 
 :: Переход в директорию с скриптами
-cd /d "D:\SmtMaks\TestLogJs"
+cd /d ".\TestLogJs"
 
 :: Запуск скриптов
-call node Error.js
-call node Operate.js
+call node log.js
 
 echo Скрипты успешно запущены.
 pause > nul

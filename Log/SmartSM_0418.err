@@ -1,0 +1,4 @@
+Condition: ASSERT( nIndex >= 0 && nIndex < m_nSize ); 
+File: C:\Program Files\Microsoft Visual Studio\VC98\MFC\INCLUDE\afxtempl.h 
+Line: 254
+
