@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import s from "./CM421Item.module.css";
 import DonatsWarning from '../../Donats/DonatsWarning'
 
-interface LogEntry {
+interface DataItem {
     timestamp: string;
     id: string;
     head:string;
@@ -22,7 +22,7 @@ export default function CM421ItemError() {
 
         fetch('/Error.json')
             .then(response => response.json())
-            .then((data: LogEntry[]) => {
+            .then((data: DataItem[]) => {
 
                 if (Array.isArray(data)) {
                     const warnings = data.filter(item => item.level === 'WARNING');

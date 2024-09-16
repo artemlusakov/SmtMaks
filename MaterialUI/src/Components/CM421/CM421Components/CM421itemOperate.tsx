@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import s from './CM421Item.module.css'
 import DonutsDetails from '../../Donats/Donats'
 
-interface WorkRecord {
+interface DataItem {
   datetime: string;
   message: string;
 }
@@ -14,7 +14,7 @@ export default function CM421ItemOperate() {
   useEffect(() => {
     fetch('/Operate.json')
       .then(response => response.json())
-      .then((data: WorkRecord[]) => {
+      .then((data: DataItem[]) => {
         if (Array.isArray(data)) {
           const pcbRecords = data.filter(item => item.message.includes('[LMEvent::RID_EVENT_PCB]'));
           setCompletedTasks(pcbRecords.length);

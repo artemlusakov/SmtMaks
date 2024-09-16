@@ -4,14 +4,6 @@ import { InputMask } from 'primereact/inputmask';
 import s from './CM421Item.module.css'
 
 interface DataItem {
-  datetime: string;
-  message: string;
-  feeder?: string;
-  type?: string;
-  event?: string;
-}
-
-interface DataItem {
     datetime: string;
     message: string;
     feeder?: string;
