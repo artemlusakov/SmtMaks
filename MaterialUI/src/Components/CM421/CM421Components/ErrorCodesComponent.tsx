@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import s from './CM421Item.module.css'
 
 interface DataItem {
     timestamp: string;
@@ -19,7 +20,7 @@ const ErrorCodesComponent = () => {
             .then(response => response.json())
             .then((data: DataItem[]) => {
                 if (Array.isArray(data)) {
-                    const filteredErrors = data.filter(item => item.level !== 'INFO' && item.level !== 'NORMAL');
+                    const filteredErrors = data.filter(item => item.level === 'WARNING');
 
                     const codes = filteredErrors.reduce((acc: Record<string, { count: number; description: string }>, item) => {
                         let match = item.message.match(/\[(\d+)\]/);
@@ -42,6 +43,8 @@ const ErrorCodesComponent = () => {
 
     const getErrorDescription = (code: string): string => {
         switch (code) {
+            case '3067':
+                return 'Не удается произвести PCB из-за несоответствия ширины рельсов и ширины печатной платы';
             case '5613':
                 return 'Пневматическая ошибка при подхвате компонента';
             case '5201':
@@ -72,18 +75,39 @@ const ErrorCodesComponent = () => {
                 return 'Клапан клеща закрыт';
             case '1698':
                 return 'Ошибка индекса подающего устройства';
-            default:
+            case '0065':
+                return 'Ошибка в коде ошибки';
+            case '5101':
+                return 'Превышен счетчик повторных попыток подъема детали для ленточного подающего устройства';
+            case '5300':
+                return 'Истощение детали в ленточном подающем устройстве';
+            case '5301':
+                return 'Превышен счетчик повторных попыток подъема детали для ленточного подающего устройства';
+            case '5611':
+                return 'Пневматическая ошибка при подхвате детали из ленточного подающего устройства';
+            case '5615':
+                return 'Пневматическая ошибка при подхвате детали из ленточного подающего устройства';
+            case '5630':
+                return 'Пневматическая ошибка перед размещением детали. Нет детали на головке';
+            case '5633':
+                return 'Подхват грань детали из подающего устройства';
+            case '5803':
+                return 'Ошибка индекса подающего устройства';
+            case '5806':
+                return 'Ошибка открытия подающего устройства F или R';
+            
+                default:
                 return 'Неизвестная ошибка';
         }
     };
 
     return (
-        <div>
+        <div className={s.ErrorCodesComponent}>
             <h3>Количество ошибок по кодам</h3>
             <ul>
                 {Object.entries(errorCodes).map(([code, { count, description }]) => (
                     <li key={code}>
-                        [{code}] - {description} ({count})
+                        [{code}] - {description} <div className='Color_red'>({count})</div>
                     </li>
                 ))}
             </ul>
@@ -92,4 +116,3 @@ const ErrorCodesComponent = () => {
 };
 
 export default ErrorCodesComponent;
-    
