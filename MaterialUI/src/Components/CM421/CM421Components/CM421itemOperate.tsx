@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import s from './CM421Item.module.css'
-import DonutsDetails from '../../Donats/Donats'
+import DonutsDetails from '../../Graphs/Donats/Donats'
 
 interface DataItem {
   datetime: string;
@@ -54,12 +54,12 @@ export default function CM421ItemOperate() {
         type="number"
         value={targetCount}
         onChange={handleInputChange}
-        placeholder='Введите количество деталей'
+        placeholder='Введите количество плат'
       />
 
       <p>Процент выполнения: {calculatePercentage()}</p>
 
-      <p>Количество выполненных задач: {completedTasks}</p>
+      <p>Количество плат: {completedTasks}</p>
     </div>
   );
 }

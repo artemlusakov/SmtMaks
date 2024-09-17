@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import s from "./CM421Item.module.css";
-import DonatsWarning from '../../Donats/DonatsWarning'
+import DonatsWarning from '../../Graphs/Donats/DonatsWarning'
 
 interface DataItem {
     timestamp: string;

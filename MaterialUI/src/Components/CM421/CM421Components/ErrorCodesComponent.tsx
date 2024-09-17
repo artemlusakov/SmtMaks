@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import s from './CM421Item.module.css'
+import s from './CM421Item.module.css';
+import ErrorCodesColumn from '../../Graphs/Column/ErrorCodesColumn';
 
 interface DataItem {
     timestamp: string;
@@ -75,7 +76,7 @@ const getErrorDescription = (code: string): string => {
         case '5806':
             return 'Ошибка открытия подающего устройства F40';
         case 'aa1f':
-            return ' Головной URC Не удалось подобрать деталь должным образом';
+            return 'Головной URC Не удалось подобрать деталь должным образом';
         case 'fe02':
             return 'Устройство подачи детали Превышено количество повторных попыток захвата детали для устройства подачи палочек';
         case 'aa04':
@@ -127,7 +128,6 @@ const getErrorDescription = (code: string): string => {
 
         case '':
             return '';
-    
 
         default:
             return 'Неизвестная ошибка';
@@ -165,6 +165,8 @@ const ErrorCodesComponent = () => {
     return (
         <div className={s.ErrorCodesComponent}>
             <h3>Количество ошибок по кодам</h3>
+            <ErrorCodesColumn errorCodes={errorCodes} />
+
             <ul>
                 {Object.entries(errorCodes).map(([code, { count, description }]) => (
                     <li key={code}>
@@ -172,6 +174,7 @@ const ErrorCodesComponent = () => {
                     </li>
                 ))}
             </ul>
+            
         </div>
     );
 };

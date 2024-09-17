@@ -13,7 +13,7 @@ interface DonutsDetailsProps {
 export default function DonutsDetails({ completedTasks, targetCount }: DonutsDetailsProps): JSX.Element {
   // Определение опций графика
   const chartOptions = {
-    labels: ['Сделано деталей', 'Осталось сделать деталей'], // Подписи для секторов графика
+    labels: ['Сделано плат', 'Осталось сделать плат'], // Подписи для секторов графика
     colors: ['#34C759', '#FF0000'], // Цвета для секторов: зеленый для выполненных, красный для не выполненных
     plotOptions: {
       pie: { // Общие настройки для кругового графика

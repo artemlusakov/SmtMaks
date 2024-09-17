@@ -28,6 +28,13 @@ const DonatsWarning: React.FC<Props> = ({ warningCount, filteredCount, labels })
                 }
             }
         },
+        pieChart: { // Дополнительные настройки для кругового графика
+            customScale: 1.1 // Увеличивает масштаб графика на 10%
+          },
+        legend: {
+            show: false
+        },
+
         responsive: [{
             breakpoint: 480,
             options: {
@@ -39,9 +46,7 @@ const DonatsWarning: React.FC<Props> = ({ warningCount, filteredCount, labels })
                 }
             }
         }],
-        legend: {
-            show: false
-        },
+        
         noData: {
             text: 'No data available',
             align: 'center',
@@ -67,7 +72,6 @@ const DonatsWarning: React.FC<Props> = ({ warningCount, filteredCount, labels })
                 options={chartOptions}
                 series={chartSeries}
                 type="donut"
-                width={300}
                 height={250}
             />
         </div>
