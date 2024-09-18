@@ -213,7 +213,7 @@ const ErrorCodesComponent = () => {
             <ul>
                 {Object.entries(errorCodes).map(([code, { count, description }]) => (
                     <li key={code}>
-                        [{code}] - {description} <div className='Color_red'>({count})</div>
+                        [{code}] - {description} <div className='Color_red'>Количество: ({count})</div>
                     </li>
                 ))}
             </ul>
