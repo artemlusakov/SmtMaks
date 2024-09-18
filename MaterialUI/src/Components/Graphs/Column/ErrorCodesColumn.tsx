@@ -14,7 +14,7 @@
             rotate: -90,
             rotateAlways: true,
             style: {
-              fontSize: '9px',
+              fontSize: 'clamp(0.563rem, -0.014rem + 0.77vw, 0.938rem)',
               fontFamily: 'Helvetica, Arial, sans-serif',
               fontWeight: 400,
           },
