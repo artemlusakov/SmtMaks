@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import s from './CM421Item.module.css';
 import ErrorCodesColumn from '../../Graphs/Column/ErrorCodesColumn';
 
+// Определяем интерфейс для элемента данных
 interface DataItem {
     timestamp: string;
     level: string;
@@ -13,6 +14,7 @@ interface DataItem {
     part?: string;
 }
 
+// Функция для извлечения кода ошибки из сообщения
 const getErrorCodeFromMessage = (message: string): string | null => {
     const match = message.match(/\[[a-zA-Z0-9]+\]/);
     if (match) {
@@ -21,6 +23,7 @@ const getErrorCodeFromMessage = (message: string): string | null => {
     return null;
 };
 
+// Функция для получения описания ошибки по коду
 const getErrorDescription = (code: string): string => {
     switch (code) {
         case '5613':
@@ -179,11 +182,24 @@ const getErrorDescription = (code: string): string => {
 
 const ErrorCodesComponent = () => {
     const [errorCodes, setErrorCodes] = useState<Record<string, { count: number; description: string }>>({});
+    const [searchTerm, setSearchTerm] = useState('');
+
+    // Функция для фильтрации ошибок на основе ввода пользователя
+    const filteredErrors = useMemo(() => {
+        if (!searchTerm) return errorCodes;
+        
+        return Object.entries(errorCodes).reduce((acc, [code, { count, description }]) => {
+            if (description.toLowerCase().includes(searchTerm.toLowerCase())) {
+                acc[code] = { count, description };
+            }
+            return acc;
+        }, {});
+    }, [errorCodes, searchTerm]);
 
     useEffect(() => {
         fetch('/Error.json')
-            .then(response => response.json())
-            .then((data: DataItem[]) => {
+           .then(response => response.json())
+           .then((data: DataItem[]) => {
                 if (Array.isArray(data)) {
                     const filteredErrors = data.filter(item => item.level === 'WARNING');
 
@@ -205,13 +221,23 @@ const ErrorCodesComponent = () => {
             });
     }, []);
 
+
+
     return (
         <div className={s.ErrorCodesComponent}>
             <h3>Количество ошибок по кодам</h3>
-            <ErrorCodesColumn errorCodes={errorCodes} />
+            <input 
+                type="text" 
+                placeholder="Введите слово для поиска" 
+                value={searchTerm} 
+                onChange={(e) => setSearchTerm(e.target.value)} 
+            />
+    
+
+            <ErrorCodesColumn errorCodes={filteredErrors} />
 
             <ul>
-                {Object.entries(errorCodes).map(([code, { count, description }]) => (
+                {Object.entries(filteredErrors).map(([code, { count, description }]) => (
                     <li key={code}>
                         [{code}] - {description} <div className='Color_red'>Количество: ({count})</div>
                     </li>
@@ -223,5 +249,3 @@ const ErrorCodesComponent = () => {
 };
 
 export default ErrorCodesComponent;
-
-
