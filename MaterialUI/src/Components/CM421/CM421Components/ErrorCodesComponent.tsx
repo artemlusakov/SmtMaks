@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import s from './CM421Item.module.css';
 import ErrorCodesColumn from '../../Graphs/Column/ErrorCodesColumn';
 
@@ -182,19 +182,11 @@ const getErrorDescription = (code: string): string => {
 
 const ErrorCodesComponent = () => {
     const [errorCodes, setErrorCodes] = useState<Record<string, { count: number; description: string }>>({});
-    const [searchTerm, setSearchTerm] = useState('');
+    const [inputCode, setInputCode] = useState('');
 
-    // Функция для фильтрации ошибок на основе ввода пользователя
-    const filteredErrors = useMemo(() => {
-        if (!searchTerm) return errorCodes;
-        
-        return Object.entries(errorCodes).reduce((acc, [code, { count, description }]) => {
-            if (description.toLowerCase().includes(searchTerm.toLowerCase())) {
-                acc[code] = { count, description };
-            }
-            return acc;
-        }, {});
-    }, [errorCodes, searchTerm]);
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputCode(event.target.value.toLocaleLowerCase());
+    };
 
     useEffect(() => {
         fetch('/Error.json')
@@ -221,29 +213,30 @@ const ErrorCodesComponent = () => {
             });
     }, []);
 
-
-
     return (
         <div className={s.ErrorCodesComponent}>
             <h3>Количество ошибок по кодам</h3>
-            <input 
-                type="text" 
-                placeholder="Введите слово для поиска" 
-                value={searchTerm} 
-                onChange={(e) => setSearchTerm(e.target.value)} 
-            />
-    
+            
+            <div>
+                <input 
+                    type="text" 
+                    placeholder="Введите код ошибки" 
+                    value={inputCode} 
+                    onChange={handleInputChange}
+                />
+                
+                <p>Описание: {getErrorDescription(inputCode)}</p>
+            </div>
 
-            <ErrorCodesColumn errorCodes={filteredErrors} />
+            <ErrorCodesColumn errorCodes={errorCodes} />
 
             <ul>
-                {Object.entries(filteredErrors).map(([code, { count, description }]) => (
+                {Object.entries(errorCodes).map(([code, { count, description }]) => (
                     <li key={code}>
                         [{code}] - {description} <div className='Color_red'>Количество: ({count})</div>
                     </li>
                 ))}
             </ul>
-            
         </div>
     );
 };
