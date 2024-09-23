@@ -1,13 +1,11 @@
 import React from 'react'
-import s from "./CM421_Statistics.module.css"
-import CM421ItemError from './CM421Components/CM421ItemError'
+import s from "../../Components/CM421/CM421_Statistics.module.css"
+import CM421ItemError from '../../Components/CM421/CM421Components/CM421ItemError'
 
-import CM421Img from "../../../public/IMG/CM421.jpg"
-
-import CM421ItemOperate from './CM421Components/CM421itemOperate'
-import СM421ItemOperateData from './CM421Components/CM421itemOperateDate'
-import CM421EquipmentEfficiency from './CM421Components/CM421EquipmentEfficiency'
-import ErrorCodesComponent from './CM421Components/ErrorCodesComponent'
+import CM421ItemOperate from '../../Components/CM421/CM421Components/CM421itemOperate'
+import СM421ItemOperateData from '../../Components/CM421/CM421Components/CM421itemOperateDate'
+import CM421EquipmentEfficiency from '../../Components/CM421/CM421Components/CM421EquipmentEfficiency'
+import ErrorCodesComponent from '../../Components/CM421/CM421Components/ErrorCodesComponent'
 
 
 interface MC421StatisticsProps {
