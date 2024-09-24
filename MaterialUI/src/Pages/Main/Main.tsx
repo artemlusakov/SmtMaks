@@ -3,6 +3,8 @@ import s from './Main.module.css'
 import { Tooltip } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
+import { useDrag } from 'react-dnd';
+
 import MainClok from './Clock/MainClok'
 
 export default function Main() {
@@ -16,6 +18,7 @@ export default function Main() {
     else if (value > 1000) return s.WorkingLine__Element_normal;
     else return s.WorkingLine__Element_good;
   };
+  
 
   return (
     <div className={s.MainContent}>
