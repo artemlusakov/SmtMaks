@@ -20,7 +20,6 @@
 .MainContent__WorkingLine{
     display: flex;
     align-items: center;
-    justify-content: space-around;
 
     width: 98%;
     height: 35%;
@@ -32,6 +31,12 @@
     box-shadow: 0px 0px 20px -2px rgba(0, 0, 0, 0.6);
 }
 
+.WorkingLine_Box{
+  align-items: center;
+  height: 100%;
+  display: flex;
+}
+
 .WorkingLine{
     display: flex;
     align-items: center;
@@ -40,28 +45,47 @@
     height: 100%;
 }
 
-.WorkingLine__Element{
-    width: 60px;
-    height: 80%;
+.WorkingLine__Element {
+
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
+    text-decoration: none;
 
-    border: 1px solid #212121;
+    margin-left: 2px;
+
+    border: 2px solid #212121;
+}
+.Hanwha{
+  width: 60px;
+  height: 80%;
 }
 
 .WorkingLine__Element_good {
     background-color: green;
+  }.WorkingLine__Element_good:hover{
+    border: green solid 2px;
+    background-color: rgb(5, 97, 5);
+    transition: all 0.7s ease-in-out;
   }
   
   .WorkingLine__Element_normal {
     background-color: orange;
+  } .WorkingLine__Element_normal:hover{
+    border: orange solid 2px;
+    background-color:rgb(255, 191, 0) ;
+    transition: all 0.7s ease-in-out;
   }
   
   .WorkingLine__Element_bad {
     background-color: red;
+  }.WorkingLine__Element_bad:hover{
+    border: red solid 2px;
+    background-color:rgb(206, 0, 0) ;
+    transition: all 0.7s ease-in-out;
   }
+  
 
 
 /*  */
@@ -71,7 +95,7 @@
     align-items: center;
     justify-content: space-around;
     width: 100%;
-    height: 60%;
+    height: 50%;
 }
 .Statistic__Box{
     display: flex;

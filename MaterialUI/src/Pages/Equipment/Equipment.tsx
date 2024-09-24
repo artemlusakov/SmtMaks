@@ -2,13 +2,14 @@ import React from 'react'
 import TemporaryDrawer from '../../Components/Navigate/Navigate.tsx'
 import { Container} from "@mui/material";
 import MC421_Statistics from "./CM421_Statistics.tsx"
+import "./Equipment.css"
 
 import Clock from '../../Components/Clock/Clock.tsx'
 
 export default function Equipment() {
   return (
     <div>
-          <Container fixed className='App__Container'>
+          <Container fixed className='Equipment'>
             <TemporaryDrawer/>
             <Clock/>
           </Container>

@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     element: <Main/>,
   },
   {
-    path: "/MC421",
+    path: "/CM421",
     element: <Equipment/>,
   }
 ]);

@@ -18,28 +18,28 @@ interface MC421StatisticsProps {
 
 export default function MC421_Statistics(props: MC421StatisticsProps): React.ReactElement{
   return (
-    <div className={s.MC421}>
-      <div className={s.MC421__LeftBox}>
-        <div className={s.MC421__Box}>
-          <div className={s.MC421__LeftBox_Content}>
+    <div className={s.CM421}>
+      <div className={s.CM421__LeftBox}>
+        <div className={s.CM421__Box}>
+          <div className={s.CM421__LeftBox_Content}>
                 <CM421ItemError/>
                 <CM421ItemOperate/>
           </div>
         </div>
 
-        <div className={s.MC421__Box}>
-          <div className={s.MC421__LeftBox_Content}>
+        <div className={s.CM421__Box}>
+          <div className={s.CM421__LeftBox_Content}>
             <СM421ItemOperateData/>
             <CM421EquipmentEfficiency/>
           </div>
         </div>
       </div>
 
-      <div className={s.MC421__RightBox}>
-        <div className={s.MC421__RightBox_Content}>
+      <div className={s.CM421__RightBox}>
+        <div className={s.CM421__RightBox_Content}>
         {/* <img src={CM421Img} alt="" /> */}
-          <div className={s.MC421__RightBox_Content_Text}>
-            <h2>MC 421</h2>
+          <div className={s.CM421__RightBox_Content_Text}>
+            <h2>CM 421</h2>
 
             <ErrorCodesComponent/>
           </div>
