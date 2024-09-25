@@ -1,11 +1,7 @@
-import React from 'react'
 import s from './Main.module.css'
-import { Tooltip } from '@mui/material';
-import { NavLink } from 'react-router-dom';
 
-import { useDrag } from 'react-dnd';
-
-import MainClok from './Clock/MainClok'
+import MainClok from './Components/Clock/MainClok'
+import WorkingLineElement from './Components/WorkingLineElement/WorkingLineElement';
 
 export default function Main() {
   const id = "e133415";
@@ -26,63 +22,40 @@ export default function Main() {
 
       <div className={s.MainContent__WorkingLine}>
         <div className={s.WorkingLine_Box}>
-          <Tooltip title={`CM 421 id: ${id}`} classes={{ tooltip: s.customTooltip }}>
-            <NavLink to={'/CM421'} className={`${s.WorkingLine__Element} ${s.Hanwha} ${getStatusClass(value)}`}>
-              <div>CM 421</div>
-            </NavLink>
-          </Tooltip>
+        <WorkingLineElement 
+          size='Element60x80' 
+          titleNameElemet={'CM 421'} 
+          idElement={id} 
+          linkElement={'/CM421'} 
+          nameElement={"CM 421"} 
+          valueElement={value2}
+        />
+        <WorkingLineElement 
+          size='Element100x50' 
+          titleNameElemet={'Какоето оборудование'} 
+          idElement={id} 
+          linkElement={'/Test'} 
+          nameElement={"Test"} 
+          valueElement={value}
+        />
 
-          <Tooltip title={`CM 421 id: ${id}`} classes={{ tooltip: s.customTooltip }}>
-            <NavLink to={'/CM421'} className={`${s.WorkingLine__Element} ${s.Hanwha} ${getStatusClass(value2)}`}>
-              <div>CM 421</div>
-            </NavLink>
-          </Tooltip>
+        <WorkingLineElement 
+          size='Element60x80' 
+          titleNameElemet={'CM 421'} 
+          idElement={id} 
+          linkElement={'/CM421'} 
+          nameElement={"CM 421"} 
+          valueElement={value}
+        />
 
-          <Tooltip title={`CM 421 id: ${id}`} classes={{ tooltip: s.customTooltip }}>
-            <NavLink to={'/CM421'} className={`${s.WorkingLine__Element} ${s.Hanwha} ${getStatusClass(value)}`}>
-              <div>CM 421</div>
-            </NavLink>
-          </Tooltip>
-        </div>
-
-        <div className={s.WorkingLine_Box}>
-          <Tooltip title={`CM 421 id: ${id}`} classes={{ tooltip: s.customTooltip }}>
-            <NavLink to={'/CM421'} className={`${s.WorkingLine__Element} ${getStatusClass(value)}`}>
-              <div>CM 421</div>
-            </NavLink>
-          </Tooltip>
-
-          <Tooltip title={`CM 421 id: ${id}`} classes={{ tooltip: s.customTooltip }}>
-            <NavLink to={'/CM421'} className={`${s.WorkingLine__Element} ${getStatusClass(value2)}`}>
-              <div>CM 421</div>
-            </NavLink>
-          </Tooltip>
-
-          <Tooltip title={`CM 421 id: ${id}`} classes={{ tooltip: s.customTooltip }}>
-            <NavLink to={'/CM421'} className={`${s.WorkingLine__Element} ${getStatusClass(value3)}`}>
-              <div>CM 421</div>
-            </NavLink>
-          </Tooltip>
-        </div>
-
-        <div className={s.WorkingLine_Box}>
-          <Tooltip title={`CM 421 id: ${id}`} classes={{ tooltip: s.customTooltip }}>
-            <NavLink to={'/CM421'} className={`${s.WorkingLine__Element} ${getStatusClass(value)}`}>
-              <div>CM 421</div>
-            </NavLink>
-          </Tooltip>
-
-          <Tooltip title={`CM 421 id: ${id}`} classes={{ tooltip: s.customTooltip }}>
-            <NavLink to={'/CM421'} className={`${s.WorkingLine__Element} ${getStatusClass(value2)}`}>
-              <div>CM 421</div>
-            </NavLink>
-          </Tooltip>
-
-          <Tooltip title={`CM 421 id: ${id}`} classes={{ tooltip: s.customTooltip }}>
-            <NavLink to={'/CM421'} className={`${s.WorkingLine__Element} ${getStatusClass(value3)}`}>
-              <div>CM 421</div>
-            </NavLink>
-          </Tooltip>
+        <WorkingLineElement 
+          size='Element60x80' 
+          titleNameElemet={'CM 421'} 
+          idElement={id} 
+          linkElement={'/CM421'} 
+          nameElement={"CM 421"} 
+          valueElement={value3}
+        />        
         </div>
       </div>
     
