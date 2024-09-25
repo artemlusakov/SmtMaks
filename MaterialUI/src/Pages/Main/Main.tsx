@@ -8,12 +8,6 @@ export default function Main() {
   const value = 100;
   const value2 = 1100;
   const value3 = 2000;
-  // Функция для определения статуса
-  const getStatusClass = (value:number) => {
-    if (value > 1500) return s.WorkingLine__Element_bad;
-    else if (value > 1000) return s.WorkingLine__Element_normal;
-    else return s.WorkingLine__Element_good;
-  };
   
 
   return (

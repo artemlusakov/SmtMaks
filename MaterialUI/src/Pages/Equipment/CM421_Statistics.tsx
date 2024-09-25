@@ -6,6 +6,7 @@ import CM421ItemOperate from '../../Components/CM421/CM421Components/CM421itemOp
 import СM421ItemOperateData from '../../Components/CM421/CM421Components/CM421itemOperateDate'
 import CM421EquipmentEfficiency from '../../Components/CM421/CM421Components/CM421EquipmentEfficiency'
 import ErrorCodesComponent from '../../Components/CM421/CM421Components/ErrorCodesComponent'
+import CM421ItemFiderID from '../../Components/CM421/CM421Components/CM421ItemFiderID'
 
 
 interface MC421StatisticsProps {
@@ -42,6 +43,7 @@ export default function MC421_Statistics(props: MC421StatisticsProps): React.Rea
             <h2>CM 421</h2>
 
             <ErrorCodesComponent/>
+            <CM421ItemFiderID/>
           </div>
 
         </div>
