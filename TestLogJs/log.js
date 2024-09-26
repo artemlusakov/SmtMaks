@@ -83,7 +83,7 @@ function parseOperateLogLine(line) {
   const datetime = `${date}T${time}`;
 
   // Регулярное выражение для поиска фидера (R или F, за которыми следуют до трех цифр)
-  const feederRegex = /[RF]\d{1,3}/g;
+  const feederRegex = /\s[RF]\d{1,3}\s/g;
   
   let parsedMessage = {};
   let feederMatch = feederRegex.exec(message);
@@ -128,6 +128,7 @@ function parseOperateLogLine(line) {
 function determineLogLevel(message) {
   if (message.includes("WARNING")) return "WARNING";
   if (message.includes("ERROR")) return "ERROR";
+  if (message.includes("FREEZE")) return "FREEZE";
   return "INFO"; // По умолчанию
 }
 

@@ -2,6 +2,7 @@ import s from './Main.module.css'
 
 import MainClok from './Components/Clock/MainClok'
 import WorkingLineElement from './Components/WorkingLineElement/WorkingLineElement';
+import TestDND from './TestDND';
 
 export default function Main() {
   const id = "e133415";
