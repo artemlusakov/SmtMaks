@@ -42,3 +42,61 @@
     s - включение переносов строк в "." (точка может соответствовать новым строкам)
     u - поддержка Unicode
     y - "sticky" поиск (поиск только от текущего позиции)
+
+    import React, { useState } from 'react';
+import s from './Main.module.css';
+import MainClok from './Components/Clock/MainClok';
+import WorkingLineElement from './Components/WorkingLineElement/WorkingLineElement';
+
+interface Element {
+  id: string;
+  title: string;
+  value: number;
+  size: string; // Изменено на обязательное свойство
+}
+
+export default function Main() {
+  const [elements, setElements] = useState<Element[]>([
+    { id: "e133415", size: "Element60x80", title: "CM 421", value: 100 },
+    { id: "e133415", size: "Element100x50", title: "Какоето оборудование", value: 1100 },
+    { id: "e133415", size: "Element60x80", title: "CM 421", value: 200 },
+    { id: "e133415", size: "Element60x80", title: "CM 421", value: 2000 }
+  ]);
+
+  return (
+    <div className={s.MainContent}>
+      <MainClok />
+
+      <div className={s.MainContent__WorkingLine}>
+        <div>
+          {elements.map((item, index) => (
+            <WorkingLineElement
+              key={item.id}
+              titleNameElemet={item.title}
+              idElement={item.id}
+              linkElement={`/CM421`}
+              nameElement={item.title}
+              valueElement={item.value}
+              size={item.size}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className={s.MainContent__Statistic}>
+        <div className={s.Statistic__Box}>
+          <h3>Самое не эфективное оборудование</h3>
+        </div>
+        <div className={s.Statistic__Box}>
+          <h3>Самое не эфективное оборудование</h3>
+        </div>
+        <div className={s.Statistic__Box}>
+          <h3>Самое не эфективное оборудование</h3>
+        </div>
+        <div className={s.Statistic__Box}>
+          <h3>Самое не эфективное оборудование</h3>
+        </div>
+      </div>
+    </div>
+  );
+}
