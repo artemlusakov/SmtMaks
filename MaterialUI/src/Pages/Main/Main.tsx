@@ -6,11 +6,49 @@ import { useState } from 'react';
 
 export default function Main() {
   const elements = [
-    { id: "e133415", size: "Element60x80",name:"CM 421", title: "CM 421", value: 100 },
-    { id: "e133415", size: "Element100x50",name:"Test", title: "Какоето оборудование", value: 1100 },
-    { id: "e133415", size: "Element60x80",name: "CM 421", title: "CM 421", value: 200 },
-    { id: "e133415", size: "Element60x80",name:"CM 421", title: "CM 421", value: 2000 },
-    { id: "e133415", size: "Element100x50",name:"Test", title: "Какоето оборудование", value: 100 },
+    {
+       id: "e133415",
+      link: '/CM421', 
+      size: "Element60x80",
+      name:"CM 421", 
+      title: "CM 421", 
+      value: 100 
+    },
+
+    { 
+      id: "e133415",
+      link: '/CM421', 
+      size: "Element100x50",
+      name:"Test", 
+      title: "Какоето оборудование", 
+      value: 1100 
+    },
+    {
+      id: "e133415",
+      link: '/CM421',
+      size: "Element60x80",
+      name: "CM 421", 
+      title: "CM 421", 
+      value: 200 
+      },
+
+    { 
+      id: "e133415",
+      link: '/CM421', 
+      size: "Element60x80",
+      name:"CM 421", 
+      title: "CM 421", 
+      value: 2000 
+    },
+
+    { 
+      id: "e133415",
+      link: '/CM421', 
+      size: "Element100x50",
+      name:"Test", 
+      title: "Какоето оборудование", 
+      value: 100 
+    },
   ];
   
   const [workingLineElements, setWorkingLineElements] = useState(elements);
@@ -27,7 +65,7 @@ export default function Main() {
               key={index}
               titleNameElemet={item.title}
               idElement={item.id}
-              linkElement={`/CM421`}
+              linkElement={item.link}
               nameElement={item.name}
               valueElement={item.value}
               size={item.size}

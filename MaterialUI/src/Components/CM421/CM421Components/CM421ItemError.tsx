@@ -59,7 +59,12 @@ export default function CM421ItemError() {
     return (
         <div className={s.ItemBox}>
             <h2>График соотношения WARNING</h2>
-            <DonatsWarning warningCount={warningCount} filteredCount={filteredCount} labels ={[ 'Всего Warnings', `Ошибки с ${selectedHead}  ${selectFider}` ]}/>
+            
+            <DonatsWarning 
+                warningCount={warningCount} 
+                filteredCount={filteredCount} 
+                labels ={[ 'Всего Warnings', `Ошибки с ${selectedHead}  ${selectFider}`]}
+            />
             
             <div>
                 <select value={selectedHead} onChange={handleSelectChange}>
