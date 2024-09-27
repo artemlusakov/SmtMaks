@@ -42,7 +42,7 @@ export default function MC421_Statistics(props: MC421StatisticsProps): React.Rea
         {/* <img src={CM421Img} alt="" /> */}
           <div className={s.CM421__RightBox_Content_Text}>
             <h2>CM 421</h2>
-            <Test/>
+            {/* <Test/> */}
             <ErrorCodesComponent/>
             <CM421ItemFiderID/>
           </div>

@@ -1,0 +1,9 @@
+.ErrorCodesComponent ul {
+    width: 100%;
+    height: 400px;
+    overflow: auto;
+    overscroll-behavior: none;
+}
+.ErrorCodesComponent li{
+    border-bottom:1px solid #212121 ;
+}

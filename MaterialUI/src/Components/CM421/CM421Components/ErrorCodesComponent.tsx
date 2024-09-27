@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import s from './CM421Item.module.css';
+import './ErrorCodesComponent.css';
 import ErrorCodesColumn from '../../Graphs/Column/ErrorCodesColumn';
 
 // Определяем интерфейс для элемента данных
@@ -214,7 +214,7 @@ const ErrorCodesComponent = () => {
     }, []);
 
     return (
-        <div className={s.ErrorCodesComponent}>
+        <div className={"ErrorCodesComponent"}>
             <h3>Количество ошибок по кодам</h3>
             
             <div>

@@ -8,10 +8,11 @@ interface DataItem {
     type: string;
     event: string;
     part?: string;
+    feederId?: string;
 }
 
-export default function CM421ItemFiderID() {
-    const [uniqueFeedersParts, setUniqueFeedersParts] = useState<{ feeder: string; part?: string }[]>([]);
+export default function Test() {
+    const [FeedersParts, setFeedersParts] = useState<{ feeder: string; part?: string; feederId?: string }[]>([]);
 
     useEffect(() => {
         const fetchData = async (): Promise<void> => {
@@ -23,33 +24,38 @@ export default function CM421ItemFiderID() {
                 const data: DataItem[] = await response.json();
                 
                 if (Array.isArray(data)) {
-                    const feedersParts: { [key: string]: string[] } = {};
+                    const feedersParts: { [key: string]: { part?: string; feederId?: string } } = {};
                     
                     data.forEach(item => {
-                        const match = item.message.match(/Feeder\s+(\w+)\s(?:Part\s+)([a-zA-Z0-9%._()]+)/i );
+                        const match = item.message.match(/Feeder\s+(\w+)\s(?:Part\s+)([a-zA-Z0-9%._()]+)/i);
                         if (match) {
                             const feeder = match[1].trim();
                             const part = match[2]?.trim();
+
+                            // Проверяем, есть ли соответствующее сообщение с FeederID
+                            const feederIdMatch = item.message.match(/FeederID\((\d+)\)$/);
+                            const feederId = feederIdMatch ? feederIdMatch[1] : undefined;
+
                             if (!feedersParts[feeder]) {
-                                feedersParts[feeder] = [];
+                                feedersParts[feeder] = { part, feederId };
                             }
-                            feedersParts[feeder].push(part);
                         }
                     });
 
-                    // Создаем список уникальных Feeder с последней частью
-                    const uniqueFeedersParts = Object.entries(feedersParts).map(([feeder, parts]) => ({
+                    // Создаем список Feeder 
+                    const FeedersParts = Object.entries(feedersParts).map(([feeder, { part, feederId }]) => ({
                         feeder,
-                        part: parts.length > 0 ? parts[parts.length - 1] : undefined
+                        part: part || '',
+                        feederId: feederId || ''
                     }));
-                    setUniqueFeedersParts(uniqueFeedersParts);
+                    setFeedersParts(FeedersParts);
                 } else {
                     console.error('Received data is not an array');
-                    setUniqueFeedersParts([]);
+                    setFeedersParts([]);
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
-                setUniqueFeedersParts([]);
+                setFeedersParts([]);
             }
         };
 
@@ -58,11 +64,11 @@ export default function CM421ItemFiderID() {
 
     return (
         <div className='CM421ItemFiderID'>
-            <h3>Список уникальных Feeder с их последними частями</h3>
+            <h3>Список Feeder с их Part и FeederID</h3>
             <ul>
-                {uniqueFeedersParts.map((item, index) => (
+                {FeedersParts.map((item, index) => (
                     <li key={index}>
-                        Feeder {item.feeder} - Part {(item.part || '')}
+                        Feeder {item.feeder}  Part - {(item.part || '')}  FeederID - {(item.feederId || '')}
                     </li>
                 ))}
             </ul>

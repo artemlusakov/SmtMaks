@@ -2,7 +2,9 @@ import s from './Main.module.css'
 
 import MainClok from './Components/Clock/MainClok'
 import WorkingLineElement from './Components/WorkingLineElement/WorkingLineElement';
-import TestDND from './TestDND';
+
+import { DragDropContext } from 'react-beautiful-dnd';
+
 
 export default function Main() {
   const id = "e133415";
@@ -16,42 +18,44 @@ export default function Main() {
       <MainClok/>
 
       <div className={s.MainContent__WorkingLine}>
-        <div className={s.WorkingLine_Box}>
-        <WorkingLineElement 
-          size='Element60x80' 
-          titleNameElemet={'CM 421'} 
-          idElement={id} 
-          linkElement={'/CM421'} 
-          nameElement={"CM 421"} 
-          valueElement={value2}
-        />
-        <WorkingLineElement 
-          size='Element100x50' 
-          titleNameElemet={'Какоето оборудование'} 
-          idElement={id} 
-          linkElement={'/Test'} 
-          nameElement={"Test"} 
-          valueElement={value}
-        />
+        <DragDropContext>
+          <div className={s.WorkingLine_Box}>
+            <WorkingLineElement 
+              size='Element60x80' 
+              titleNameElemet={'CM 421'} 
+              idElement={id} 
+              linkElement={'/CM421'} 
+              nameElement={"CM 421"} 
+              valueElement={value2}
+            />
+            <WorkingLineElement 
+              size='Element100x50' 
+              titleNameElemet={'Какоето оборудование'} 
+              idElement={id} 
+              linkElement={'/Test'} 
+              nameElement={"Test"} 
+              valueElement={value}
+            />
 
-        <WorkingLineElement 
-          size='Element60x80' 
-          titleNameElemet={'CM 421'} 
-          idElement={id} 
-          linkElement={'/CM421'} 
-          nameElement={"CM 421"} 
-          valueElement={value}
-        />
+            <WorkingLineElement 
+              size='Element60x80' 
+              titleNameElemet={'CM 421'} 
+              idElement={id} 
+              linkElement={'/CM421'} 
+              nameElement={"CM 421"} 
+              valueElement={value}
+            />
 
-        <WorkingLineElement 
-          size='Element60x80' 
-          titleNameElemet={'CM 421'} 
-          idElement={id} 
-          linkElement={'/CM421'} 
-          nameElement={"CM 421"} 
-          valueElement={value3}
-        />        
-        </div>
+            <WorkingLineElement 
+              size='Element60x80' 
+              titleNameElemet={'CM 421'} 
+              idElement={id} 
+              linkElement={'/CM421'} 
+              nameElement={"CM 421"} 
+              valueElement={value3}
+            />        
+          </div>
+        </DragDropContext>
       </div>
     
       <div className={s.MainContent__Statistic}>

@@ -5,5 +5,7 @@
 .CM421ItemFiderID ul{
     width: 100%;
     height: 400px;
-    overflow: auto 
+    overflow: auto;
+    overscroll-behavior: none;
+    
 }
