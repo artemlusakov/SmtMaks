@@ -2,14 +2,19 @@ import s from './Main.module.css'
 
 import MainClok from './Components/Clock/MainClok'
 import WorkingLineElement from './Components/WorkingLineElement/WorkingLineElement';
-import TestDND from './TestDND';
+import { useState } from 'react';
 
 export default function Main() {
-  const id = "e133415";
-  const value = 100;
-  const value2 = 1100;
-  const value3 = 2000;
+  const elements = [
+    { id: "e133415", size: "Element60x80",name:"CM 421", title: "CM 421", value: 100 },
+    { id: "e133415", size: "Element100x50",name:"Test", title: "Какоето оборудование", value: 1100 },
+    { id: "e133415", size: "Element60x80",name: "CM 421", title: "CM 421", value: 200 },
+    { id: "e133415", size: "Element60x80",name:"CM 421", title: "CM 421", value: 2000 },
+    { id: "e133415", size: "Element100x50",name:"Test", title: "Какоето оборудование", value: 100 },
+  ];
   
+  const [workingLineElements, setWorkingLineElements] = useState(elements);
+
 
   return (
     <div className={s.MainContent}>
@@ -17,40 +22,17 @@ export default function Main() {
 
       <div className={s.MainContent__WorkingLine}>
         <div className={s.WorkingLine_Box}>
-        <WorkingLineElement 
-          size='Element60x80' 
-          titleNameElemet={'CM 421'} 
-          idElement={id} 
-          linkElement={'/CM421'} 
-          nameElement={"CM 421"} 
-          valueElement={value2}
-        />
-        <WorkingLineElement 
-          size='Element100x50' 
-          titleNameElemet={'Какоето оборудование'} 
-          idElement={id} 
-          linkElement={'/Test'} 
-          nameElement={"Test"} 
-          valueElement={value}
-        />
-
-        <WorkingLineElement 
-          size='Element60x80' 
-          titleNameElemet={'CM 421'} 
-          idElement={id} 
-          linkElement={'/CM421'} 
-          nameElement={"CM 421"} 
-          valueElement={value}
-        />
-
-        <WorkingLineElement 
-          size='Element60x80' 
-          titleNameElemet={'CM 421'} 
-          idElement={id} 
-          linkElement={'/CM421'} 
-          nameElement={"CM 421"} 
-          valueElement={value3}
-        />        
+          {workingLineElements.map((item, index) => (
+            <WorkingLineElement
+              key={index}
+              titleNameElemet={item.title}
+              idElement={item.id}
+              linkElement={`/CM421`}
+              nameElement={item.name}
+              valueElement={item.value}
+              size={item.size}
+            />
+          ))}
         </div>
       </div>
     
