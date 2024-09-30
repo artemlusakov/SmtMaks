@@ -1,17 +1,18 @@
 import React from 'react'
-import s from "../../Components/CM421/CM421_Statistics.module.css"
-import CM421ItemError from '../../Components/CM421/CM421Components/CM421ItemError'
+import s from "./CM421_Statistics.module.css"
+import CM421ItemError from './CM421Components/CM421ItemError'
 
-import CM421ItemOperate from '../../Components/CM421/CM421Components/CM421itemOperate'
-import СM421ItemOperateData from '../../Components/CM421/CM421Components/CM421itemOperateDate'
-import CM421EquipmentEfficiency from '../../Components/CM421/CM421Components/CM421EquipmentEfficiency'
-import ErrorCodesComponent from '../../Components/CM421/CM421Components/ErrorCodesComponent'
-import CM421ItemFiderID from '../../Components/CM421/CM421Components/CM421ItemFiderID'
-import Test from '../../Components/TestInfo/Test'
+import CM421ItemOperate from './CM421Components/CM421itemOperate'
+import СM421ItemOperateData from './CM421Components/CM421itemOperateDate'
+import CM421EquipmentEfficiency from './CM421Components/CM421EquipmentEfficiency'
+import ErrorCodesComponent from './CM421Components/ErrorCodesComponent'
+import CM421ItemFiderID from './CM421Components/CM421ItemFiderID'
+import LockedUnlocked from './CM421Components/LockedUnlocked'
 
 
-interface MC421StatisticsProps {
-  warningCount: number;
+
+interface MC421StatisticsProps { // Интерфейс для пропсов
+  warningCount: number;   
   filteredCount: number;
 
   targetCount: number;
@@ -33,6 +34,7 @@ export default function MC421_Statistics(props: MC421StatisticsProps): React.Rea
           <div className={s.CM421__LeftBox_Content}>
             <СM421ItemOperateData/>
             <CM421EquipmentEfficiency/>
+            <LockedUnlocked/>
           </div>
         </div>
       </div>
@@ -42,7 +44,6 @@ export default function MC421_Statistics(props: MC421StatisticsProps): React.Rea
         {/* <img src={CM421Img} alt="" /> */}
           <div className={s.CM421__RightBox_Content_Text}>
             <h2>CM 421</h2>
-            {/* <Test/> */}
             <ErrorCodesComponent/>
             <CM421ItemFiderID/>
           </div>

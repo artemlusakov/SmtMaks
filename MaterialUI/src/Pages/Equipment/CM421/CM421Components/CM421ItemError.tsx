@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import s from "./CM421Item.module.css";
-import DonatsWarning from '../../Graphs/Donats/DonatsWarning'
+import DonatsWarning from '../../../../Components/Graphs/Donats/DonatsWarning'
 
-interface DataItem {
-    timestamp: string;
-    id: string;
+interface DataItem {     //Интерфейс для json файла
+    timestamp: string;   //Время
+    level: string;      //Состояние
+    message: string;    //Сообщение
+    feeder: string;     //Отдельный фидер
+
     head:string;
-    level: string;
-    message: string;
-    feeder: string;
 }
 
 export default function CM421ItemError() {

@@ -1,7 +1,12 @@
+// import material-ui компонеты
 import { Tooltip } from '@mui/material';
+// import react-router-dom
 import { NavLink } from 'react-router-dom';
+
+// import css стилей
 import './WorkingLineElement.css'
 
+//Интерфейс для входящих данный в лице пропсов
 interface Props {
     titleNameElemet:string,
     idElement:string,
@@ -11,7 +16,6 @@ interface Props {
     size: string
 }
 export default function WorkingLineElement(props:Props) {
-
       // Функция для определения статуса
       const getStatusClass = (value?:number) => {
         if (value && value > 1500) return "WorkingLine__Element_bad";

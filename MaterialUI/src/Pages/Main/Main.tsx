@@ -1,7 +1,11 @@
+// import css стилей
 import s from './Main.module.css'
 
+// import Компонентов
 import MainClok from './Components/Clock/MainClok'
 import WorkingLineElement from './Components/WorkingLineElement/WorkingLineElement';
+
+// import хуков
 import { useState } from 'react';
 
 export default function Main() {

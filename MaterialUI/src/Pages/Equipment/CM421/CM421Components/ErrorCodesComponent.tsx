@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ErrorCodesComponent.css';
-import ErrorCodesColumn from '../../Graphs/Column/ErrorCodesColumn';
+import ErrorCodesColumn from '../../../../Components/Graphs/Column/ErrorCodesColumn';
 
 // Определяем интерфейс для элемента данных
 interface DataItem {
