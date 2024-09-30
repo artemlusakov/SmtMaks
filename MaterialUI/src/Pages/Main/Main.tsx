@@ -1,12 +1,12 @@
 // import css стилей
 import s from './Main.module.css'
 
+// import хуков
+import { useState } from 'react';
+
 // import Компонентов
 import MainClok from './Components/Clock/MainClok'
 import WorkingLineElement from './Components/WorkingLineElement/WorkingLineElement';
-
-// import хуков
-import { useState } from 'react';
 
 export default function Main() {
   const elements = [
@@ -81,6 +81,7 @@ export default function Main() {
       <div className={s.MainContent__Statistic}>
         <div className={s.Statistic__Box}>
           <h3>Самое не эфективное оборудование</h3>
+          
         </div>
         <div className={s.Statistic__Box}>
           <h3>Самое не эфективное оборудование</h3>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ErrorCodesComponent.css';
 import ErrorCodesColumn from '../../../../Components/Graphs/Column/ErrorCodesColumn';
+import GridLoader from '../../../../Components/Loader/GridLoader';
 
 // Определяем интерфейс для элемента данных
 interface DataItem {
@@ -187,32 +188,39 @@ const ErrorCodesComponent = () => {
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputCode(event.target.value.toLocaleLowerCase());
     };
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         fetch('/Error.json')
-           .then(response => response.json())
-           .then((data: DataItem[]) => {
-                if (Array.isArray(data)) {
-                    const filteredErrors = data.filter(item => item.level === 'WARNING');
-
-                    const codes = filteredErrors.reduce((acc: Record<string, { count: number; description: string }>, item) => {
-                        const errorCode = getErrorCodeFromMessage(item.message);
-                        if (errorCode) {
-                            acc[errorCode] = {
-                                count: (acc[errorCode]?.count || 0) + 1,
-                                description: getErrorDescription(errorCode)
-                            };
-                        }
-                        return acc;
-                    }, {});
-
-                    setErrorCodes(codes);
-                } else {
-                    console.error('Неверные данные: data не массив');
+          .then(response => response.json())
+          .then((data: DataItem[]) => {
+            if (Array.isArray(data)) {
+              const filteredErrors = data.filter(item => item.level === 'WARNING');
+      
+              const codes = filteredErrors.reduce((acc: Record<string, { count: number; description: string }>, item) => {
+                const errorCode = getErrorCodeFromMessage(item.message);
+                if (errorCode) {
+                  acc[errorCode] = {
+                    count: (acc[errorCode]?.count || 0) + 1,
+                    description: getErrorDescription(errorCode)
+                  };
                 }
-            });
-    }, []);
-
+                return acc;
+              }, {});
+      
+              setErrorCodes(codes);
+            } else {
+              console.error('Неверные данные: data не массив');
+            }
+            setIsLoading(false);
+          });
+      }, []);
+      
+      if(isLoading){
+        return(
+                <GridLoader/>
+        )
+      }
     return (
         <div className={"ErrorCodesComponent"}>
             <h3>Количество ошибок по кодам</h3>

@@ -2,16 +2,19 @@ import React from 'react'
 import s from "./CM421_Statistics.module.css"
 import CM421ItemError from './CM421Components/CM421ItemError'
 
+
+// import компонентов 
 import CM421ItemOperate from './CM421Components/CM421itemOperate'
 import СM421ItemOperateData from './CM421Components/CM421itemOperateDate'
 import CM421EquipmentEfficiency from './CM421Components/CM421EquipmentEfficiency'
 import ErrorCodesComponent from './CM421Components/ErrorCodesComponent'
-import CM421ItemFiderID from './CM421Components/CM421ItemFiderID'
+import CM421ItemFiderID from './CM421Components/ListFeederID/CM421ItemFiderID'
 import LockedUnlocked from './CM421Components/LockedUnlocked'
 
 
 
-interface MC421StatisticsProps { // Интерфейс для пропсов
+// Интерфейс для пропсов
+interface MC421StatisticsProps { 
   warningCount: number;   
   filteredCount: number;
 
@@ -27,6 +30,7 @@ export default function MC421_Statistics(props: MC421StatisticsProps): React.Rea
           <div className={s.CM421__LeftBox_Content}>
                 <CM421ItemError/>
                 <CM421ItemOperate/>
+
           </div>
         </div>
 

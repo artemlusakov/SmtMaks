@@ -1,5 +1,11 @@
+// Компонент для вывода списка Feeder Part ID 
+
 import React, { useEffect, useState } from 'react';
+//Импорт css стилей
 import './CM421ItemFiderID.css';
+import GridLoader from '../../../../../Components/Loader/GridLoader';
+
+
 
 interface DataItem {
     datetime: string;
@@ -72,7 +78,9 @@ export default function Test() {
     }, []);
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return (
+            <GridLoader/>
+        )
     }
 
     return (
