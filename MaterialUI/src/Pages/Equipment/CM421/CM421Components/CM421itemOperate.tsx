@@ -1,30 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import s from './CM421Item.module.css'
 import DonutsDetails from '../../../../Components/Graphs/Donats/Donats'
+import { useCompletedTasks } from '../../../../Stors/Stor';
 
-interface DataItem {
-  datetime: string;
-  message: string;
-}
 
 export default function CM421ItemOperate() {
-  
-  const [completedTasks, setCompletedTasks] = useState<number>(0);
-  const [targetCount, setTargetCount] = useState<string>('');
 
-  useEffect(() => {
-    fetch('/Operate.json')
-      .then(response => response.json())
-      .then((data: DataItem[]) => {
-        if (Array.isArray(data)) {
-          const pcbRecords = data.filter(item => item.message.includes('[LMEvent::RID_EVENT_PCB]'));
-          setCompletedTasks(pcbRecords.length);
-        } else {
-          console.error('Received data is not an array');
-          setCompletedTasks(0);
-        }
-      })
-      .catch(error => console.error('Error fetching data:', error));
+  const [targetCount, setTargetCount] = useState<string>('');
+  const { completedTasks, fetchCompletedTasks } = useCompletedTasks();
+
+  React.useEffect(() => {
+    fetchCompletedTasks();
   }, []);
 
   const getTargetValue = () => {
