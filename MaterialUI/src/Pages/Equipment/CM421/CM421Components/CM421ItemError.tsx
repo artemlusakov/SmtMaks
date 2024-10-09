@@ -1,45 +1,49 @@
-import React, { useEffect, useState } from 'react';
+// CM421ItemError.js
+import React, { useState, useEffect } from 'react';
 import s from "./CM421Item.module.css";
 import DonatsWarning from '../../../../Components/Graphs/Donats/DonatsWarning'
+import { useWarningCount } from '../../../../Stors/Stor';
 
-interface DataItem {     //Интерфейс для json файла
-    timestamp: string;   //Время
-    level: string;      //Состояние
-    message: string;    //Сообщение
-    feeder: string;     //Отдельный фидер
+interface DataItemError {     // Интерфейс для json файла
+    timestamp: string;   // Время
+    level: string;      // Состояние
+    message: string;    // Сообщение
+    feeder: string;     // Отдельный фидер
 
     head:string;
 }
 
 export default function CM421ItemError() {
-    const [warningCount, setWarningCount] = useState<number>(0);
+    const { warningCount, fetchWarningCount } = useWarningCount();
+
     const [filteredCount, setFilteredCount] = useState<number>(0);
     const [selectedHead, setSelectedHead] = useState<string>('Head1');
     const [selectFider, setSelectFider] = useState<string>('');
-
+    const [data, setData] = useState<DataItemError[]>([]);
 
     useEffect(() => {
+        fetchWarningCount();
+    }, []);
 
+    useEffect(() => {
         fetch('/Error.json')
             .then(response => response.json())
-            .then((data: DataItem[]) => {
-
-                if (Array.isArray(data)) {
-                    const warnings = data.filter(item => item.level === 'WARNING');
-                    setWarningCount(warnings.length);
-
-                    const filteredEntries = data.filter(item =>
-                        item.head.includes(selectedHead) &&
-                        (item.feeder === (selectFider) || !selectFider) &&
-                        item.level === 'WARNING'
-                    );
-                    setFilteredCount(filteredEntries.length);
-                } else {
-                    console.error('Received data is not an array');
-                }
+            .then((data: DataItemError[]) => {
+                setData(data);
             })
             .catch(error => console.error('Error fetching data:', error));
-    }, [selectedHead, selectFider]);
+    }, []);
+
+    useEffect(() => {
+        if (data.length > 0) {
+            const filteredEntries = data.filter(item =>
+                item.head.includes(selectedHead) &&
+                (item.feeder === (selectFider) || !selectFider) &&
+                item.level === 'WARNING'
+            );
+            setFilteredCount(filteredEntries.length);
+        }
+    }, [selectedHead, selectFider, data]);
 
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedHead(event.target.value);
